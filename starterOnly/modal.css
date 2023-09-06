@@ -52,6 +52,11 @@ img {
   font-family: Roboto, sans-serif;
 }
 
+.fa {
+color: #ff0000;
+}
+
+
 .topnav a:hover {
   background-color: #ff0000;
   color: #ffffff;
@@ -89,17 +94,6 @@ img {
     text-align: left;
   }
 }
-
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
 
 main {
   font-size: 130%;
@@ -169,6 +163,17 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+.bground1 {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+
 .content {
   margin: 5% auto;
   width: 100%;
@@ -181,6 +186,42 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
+}
+
+.content1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5% auto;
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.confirm-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding-top: 70%;
+}
+
+.confirm-message {
+  font-family: DM Sans;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  text-align: center;
 }
 
 .modal-body {
@@ -208,6 +249,17 @@ input {
   font-size: 20px;
   height: 48px;
 }
+
+.errMsg {
+  font-size: 0.4em;
+  color: #e54858;
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  text-align: right;
+  line-height: 0.3;
+  transition: 0.3s;
+}
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
@@ -215,7 +267,7 @@ input {
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  text-align: right;
+  text-align: left;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
@@ -517,6 +569,63 @@ footer {
   }
 }
 
+@media screen and (max-width: 540px) {
+
+  main {
+    margin: unset;
+    padding: 25px;
+    
+  }
+  .topnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5px;
+  }
+  .header-logo {
+    width: 180px;
+    height: 30px;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .main-navbar {
+    display: flex;
+  }
+
+  .topnav a {display: none;}
+  .topnav a.icon {
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+  }
+
+  .hero-section {
+    width: 100%;
+    min-height: unset;
+  }
+
+  .hero-content {
+    width: 100%;
+    min-width: unset;
+    padding: 0px;
+  }
+
+  .hero-headline {
+    font-size: 40px;
+    width: 100%;
+    font-weight: 500;
+  }
+
+  .hero-text {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+} 
+
 @keyframes modalopen {
   from {
     opacity: 0;
@@ -526,4 +635,3 @@ footer {
     opacity: 1;
   }
 }
-
