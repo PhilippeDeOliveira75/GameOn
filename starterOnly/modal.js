@@ -11,8 +11,13 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+const modalBody = document.querySelector(".modal-body");
 const closeModal = document.querySelector(".close");
-const confirmModal = document.querySelector(".bground1");
+const confirmBody = document.querySelector(".confirm-body");
+const modalSubmit = document.querySelector(".btn-submit");
+const confirmMessage = document.querySelector(".confirm-message");
+const confirmClose = document.querySelector(".btn-close");
+
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -29,15 +34,6 @@ closeModal.addEventListener("click", closeModalForm);
 function closeModalForm() {
   modalbg.style.display = "none";
 }
-/*
-// confirm modal event
-confirmModal.forEach((btn) => btn.addEventListener("click", validateModalForm));
-
-// launch confirm modal
-function validateModalForm() {
-  confirmModal.style.display = "block";
-}*/
-
 
 // Identification of firstNAme input
 document.querySelector('#firstName').addEventListener("input", () => {
@@ -49,23 +45,36 @@ document.querySelector('#lastName').addEventListener("input", () => {
   verificationInput('#lastName', "^[-a-zA-ZÀ-ÿ' ]+$");
 });
 
+let show = (el) => {
+  el.closest('.formData').dataset.errorVisible = true;
+  console.log(el.closest('.formData'));
+};
+
+let hide = (el) => {
+  el.closest('.formData').dataset.errorVisible = null;
+};
+
 // Verification of firstName & lastName input
 function verificationInput(inputSelector) {
   const input = document.querySelector(inputSelector);
   const errMsg = document.querySelector(inputSelector + 'ErrorMsg');
-  const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+  const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s-]+$/;
 
   if (input.value.trim() === '') {
     errMsg.innerText = "Ce champ doit être rempli.";
+    show(input);
     return false;
   } else if (!regex.test(input.value)) {
     errMsg.innerText = "Ce champ ne doit contenir que des caractères alphabétiques";
+    show(input);
     return false;
   } else if (input.value.length < 2) {
     errMsg.innerText = "Ce champ doit contenir au moins 2 caractères.";
+    show(input);
     return false;
   } else {
     errMsg.innerText = "";
+    hide(input);
     return true;
   }
 }
@@ -83,9 +92,11 @@ function verificationEmail(inputSelector) {
 
   if (!emailRegex.test(input.value)) {
     errMsg.innerText = "Veuillez entrer une adresse e-mail valide.";
+    show(input);
     return false;
   } else {
     errMsg.innerText = "";
+    hide(input);
     return true;
   }
 }
@@ -106,14 +117,17 @@ function verificationDate(inputSelector) {
 
   if (input.value.trim() === '') {
     errMsg.innerText = "Ce champ doit être rempli.";
+    show(input);
     return false;
   }
   if (age < 18) {
     errMsg.innerText = "Seules les personnes majeures peuvent s'inscrire aux tournois.";
+    show(input);
     return false;
   }
 
   errMsg.innerText = "";
+  hide(input);
   return true;
 }
 
@@ -126,17 +140,25 @@ document.querySelector('#quantity').addEventListener("input", () => {
 function verificationQuantity(inputSelector) {
   const input = document.querySelector(inputSelector);
   const errMsg = document.querySelector(inputSelector + 'ErrorMsg');
+  const quantityRegex = /^[0-9]+$/;
 
+  if (!Number.isInteger(Number(input.value))){
+    errMsg.innerText = "Veuillez entrer un nombre entier.";
+    show(input);
+    return false;
+  } 
   if (input.value.trim() === '') {
     errMsg.innerText = "Ce champ doit être rempli.";
+    show(input);
     return false;
   } else {
     errMsg.innerText = "";
+    hide(input);
     return true;
   }
 }
 
-/* Identification of tournament city
+// Identification of tournament city
 const radioButtons = document.querySelectorAll('input[type="radio"]');
 radioButtons.forEach((radioButton) => {
   radioButton.addEventListener("input", () => {
@@ -185,8 +207,7 @@ function verificationCheckbox(inputSelector, errMsgSelector) {
     return true;
   }
 }
-*/
-/*
+
 // Validation of the form
 function validate() {
   const firstNameValid = verificationInput('#firstName');
@@ -201,4 +222,28 @@ function validate() {
     return false;
   }
   return true;
-}*/
+}
+
+// confirmation modal event
+modalSubmit.addEventListener("click", (btn) => {
+  btn.preventDefault();
+  confirmationModalForm()});
+
+// launch confirmation modal
+function confirmationModalForm() {
+  if (validate()) {
+    modalBody.style.display = "none";
+    confirmBody.style.display = "block";
+  }
+}
+
+// close confirmation modal event
+confirmClose.addEventListener("click", closeConfirmationModalForm);
+
+// close confirmation modal form
+function closeConfirmationModalForm() {
+  modalbg.style.display = "none";
+  modalBody.style.display = "block";
+  confirmBody.style.display = "none";
+  location.reload();
+}

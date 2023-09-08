@@ -16,8 +16,7 @@
       <div class="header-logo">
       <img alt="logo" src="Logo.png" width="auto" height="auto" />
     </div>
-    <div class="main-navbar">
-      
+    <div class="main-navbar">     
       <a href="#" class="active"><span>Accueil</span></a>
       <a href="#"><span>Détails de l'évènement</span></a>
       <a href="#"><span>À propos</span></a>
@@ -73,8 +72,7 @@
                   >
                 <span class="errMsg" id="firstNameErrorMsg"></span>
               </div>
-              <div
-                class="formData">
+              <div class="formData">
                 <label for="lastName">Nom</label><br>
                 <input
                   class="text-control"
@@ -84,20 +82,19 @@
                 />
                 <span class="errMsg" id="lastNameErrorMsg"></span>
               </div>
-              <div
-                class="formData">
+              <div class="formData">
                 <label for="email">E-mail</label><br>
                 <input
                   class="text-control"
                   type="email"
                   id="email"
                   name="email"
+                  autocomplete="on"
                 />
                 <span class="errMsg" id="emailErrorMsg"></span>
               </div>
-              <div
-                class="formData">
-                <label for="date">Date de naissance</label><br>
+              <div class="formData">
+                <label for="birthdate">Date de naissance</label><br>
                 <input
                   class="text-control"
                   type="date"
@@ -106,15 +103,13 @@
                 />
                 <span class="errMsg" id="birthdateErrorMsg"></span>
               </div>
-              <div
-                class="formData">
+              <div class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input class="text-control" type="number" id="quantity" name="quantity" min="0" max="99">
                 <span class="errMsg" id="quantityErrorMsg"></span>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-              <div
-                class="formData">
+              <div class="formData">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -184,8 +179,7 @@
                 <span class="errMsg" id="radioErrorMsg"></span>
               </div>
 
-              <div
-                class="formData">
+              <div class="formData">
                 <input
                   class="checkbox-input"
                   type="checkbox"
@@ -210,21 +204,21 @@
               <input
                 class="btn-submit"
                 type="submit"
-                class="button"
                 value="C'est parti"
               />
             </form>
           </div>
-        </div>
-      </div>
-      <div class="bground" id="confirm">
-        <div class="content1">
-          <span class="close"></span>
           <div class="confirm-body">
-            <p class="confirm-message">Merci pour</p>
-            <p class="confirm-message">votre inscription</p>
+            <div class="confirm-message">
+              <div class="confirm-text">
+                <p>Merci pour</p>
+                <p>votre inscription</p>
+              </div>           
+              <div class="confirm-button">
+                <button class="btn-close">Fermer</button>
+              </div>
+            </div>
           </div>
-          <button class="btn-submit">Fermer</button>
         </div>
       </div>
     </main>
