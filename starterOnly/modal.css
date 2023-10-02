@@ -602,6 +602,9 @@ footer {
 
   .bground {
     top: 70px;
+    position: fixed;
+    bottom: 0;
+    height: auto;
   }
 
   .close {
